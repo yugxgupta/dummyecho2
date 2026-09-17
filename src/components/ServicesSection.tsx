@@ -35,28 +35,40 @@ const SERVICES = [
 
 export const ServicesSection: React.FC = () => {
   return (
-    <section id="services" className="relative bg-black py-20 sm:py-28 md:py-36 px-6 sm:px-10 md:px-14 border-t border-white/10 overflow-hidden">
+    <section id="services" className="relative bg-[#0B0609] py-24 sm:py-32 md:py-40 px-6 sm:px-10 md:px-14 overflow-hidden">
+      {/* Soft Ambient Light Ray */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-[1px] bg-gradient-to-r from-transparent via-[#f2a97e]/25 to-transparent blur-[2px]" />
+
       {/* Background Glow */}
-      <div className="absolute top-1/2 right-1/4 w-[600px] h-[600px] bg-gradient-radial from-white/[0.02] to-transparent blur-3xl pointer-events-none" />
+      <div className="absolute top-1/2 right-1/4 w-[600px] h-[600px] bg-gradient-radial from-[#9e6b88]/15 via-[#c87a5b]/8 to-transparent blur-3xl pointer-events-none" />
+
+      {/* Fluted overlay texture */}
+      <div className="absolute inset-0 fluted-overlay pointer-events-none opacity-50" />
 
       <div className="max-w-[1240px] mx-auto relative z-10">
         {/* Section Header */}
-        <div className="space-y-4 mb-14 md:mb-20">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-70px' }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          className="space-y-4 mb-14 md:mb-20"
+        >
           <div className="flex items-center gap-3">
-            <div className="w-8 h-px bg-white/40" />
-            <span className="font-sans-ui text-xs text-white/70 uppercase tracking-[0.3em] font-medium">
+            <div className="w-8 h-px bg-copper-light shadow-[0_0_8px_rgba(242,169,126,0.8)]" />
+            <span className="font-sans-ui text-xs text-copper-light uppercase tracking-[0.3em] font-medium">
               Services & Capabilities
             </span>
           </div>
 
-          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-normal text-white tracking-tight">
-            How we <span className="italic">elevate brands</span>
+          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-normal text-[#FFF0EB] tracking-tight">
+            How we <span className="italic copper-text-gradient">elevate brands</span>
           </h2>
 
-          <p className="font-sans-ui text-sm sm:text-base text-white/70 max-w-lg leading-relaxed">
+          <p className="font-sans-ui text-sm sm:text-base text-[#FCEEE8]/75 max-w-lg leading-relaxed">
             From concept to deployment, we provide end-to-end creative engineering to bring high-impact digital experiences to life.
           </p>
-        </div>
+        </motion.div>
 
         {/* Services Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
@@ -69,38 +81,38 @@ export const ServicesSection: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-50px' }}
                 transition={{ duration: 0.7, delay: idx * 0.1, ease: [0.25, 0.1, 0.25, 1] }}
-                className="group relative p-8 sm:p-10 rounded-3xl liquid-glass border border-white/10 hover:border-white/30 transition-all duration-500 hover:shadow-2xl flex flex-col justify-between"
+                className="group relative p-8 sm:p-10 rounded-3xl liquid-glass border border-copper-dark/25 hover:border-copper-light/50 transition-all duration-500 hover:shadow-[0_16px_50px_rgba(200,122,91,0.25)] flex flex-col justify-between"
               >
                 <div>
                   {/* Icon & Title */}
                   <div className="flex items-center justify-between mb-6">
-                    <div className="w-12 h-12 rounded-2xl liquid-glass border border-white/20 flex items-center justify-center text-white group-hover:scale-110 transition-transform">
+                    <div className="w-12 h-12 rounded-2xl liquid-glass border border-copper-light/35 flex items-center justify-center text-copper-light group-hover:scale-110 group-hover:bg-copper-light/15 transition-all shadow-[0_0_15px_rgba(226,149,120,0.2)]">
                       <IconComponent className="w-6 h-6" />
                     </div>
-                    <span className="font-sans-ui text-xs font-mono text-white/40">
+                    <span className="font-sans-ui text-xs font-mono text-copper-light/70">
                       0{idx + 1}
                     </span>
                   </div>
 
-                  <h3 className="text-2xl sm:text-3xl font-serif italic text-white mb-2">
+                  <h3 className="text-2xl sm:text-3xl font-serif italic text-[#FFF0EB] mb-2 group-hover:text-copper-light transition-colors">
                     {service.title}
                   </h3>
 
-                  <p className="font-sans-ui text-xs sm:text-sm text-white/50 uppercase tracking-wider mb-4">
+                  <p className="font-sans-ui text-xs sm:text-sm text-copper-light/90 uppercase tracking-wider mb-4 font-medium">
                     {service.tagline}
                   </p>
 
-                  <p className="font-sans-ui text-sm sm:text-base text-white/70 leading-relaxed mb-8">
+                  <p className="font-sans-ui text-sm sm:text-base text-[#FCEEE8]/75 leading-relaxed mb-8">
                     {service.description}
                   </p>
                 </div>
 
                 {/* Feature Bullet Pills */}
-                <div className="flex flex-wrap gap-2 pt-6 border-t border-white/10 font-sans-ui">
+                <div className="flex flex-wrap gap-2 pt-6 border-t border-copper-dark/25 font-sans-ui">
                   {service.features.map((feat) => (
                     <span
                       key={feat}
-                      className="text-xs px-3 py-1 rounded-full bg-white/[0.04] text-white/80 border border-white/10"
+                      className="text-xs px-3 py-1 rounded-full bg-copper-dark/15 text-[#FCEEE8]/90 border border-copper-dark/30 hover:border-copper-light/50 transition-colors"
                     >
                       {feat}
                     </span>

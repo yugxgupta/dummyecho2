@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import { ArrowUpRight, Send, CheckCircle2 } from 'lucide-react';
 
 export const ContactSection: React.FC = () => {
@@ -35,59 +36,77 @@ export const ContactSection: React.FC = () => {
   ];
 
   return (
-    <footer id="contact" className="relative bg-black py-20 sm:py-28 md:py-36 px-6 sm:px-10 md:px-14 border-t border-white/10 overflow-hidden">
+    <footer id="contact" className="relative bg-[#0B0609] py-24 sm:py-32 md:py-40 px-6 sm:px-10 md:px-14 overflow-hidden">
+      {/* Soft Ambient Light Ray */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-[1px] bg-gradient-to-r from-transparent via-[#f2a97e]/25 to-transparent blur-[2px]" />
+
       {/* Background ambient lighting */}
-      <div className="absolute top-1/3 right-1/3 w-[700px] h-[500px] bg-gradient-radial from-white/[0.03] to-transparent blur-3xl pointer-events-none" />
+      <div className="absolute top-1/3 right-1/3 w-[700px] h-[500px] bg-gradient-radial from-[#c87a5b]/15 via-[#9e6b88]/8 to-transparent blur-3xl pointer-events-none" />
+
+      {/* Fluted texture backdrop */}
+      <div className="absolute inset-0 fluted-overlay pointer-events-none opacity-50" />
 
       <div className="max-w-[1240px] mx-auto relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 mb-20">
           {/* Left Column: Heading & Info */}
-          <div className="lg:col-span-6 space-y-6">
-            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full liquid-glass border border-white/20">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-70px' }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="lg:col-span-6 space-y-6"
+          >
+            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full liquid-glass border border-copper-light/40 shadow-[0_0_15px_rgba(226,149,120,0.2)]">
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-copper-light opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-copper-light shadow-[0_0_10px_rgba(242,169,126,0.9)]" />
               </span>
-              <span className="font-sans-ui text-xs font-medium text-white/90 tracking-wide">
+              <span className="font-sans-ui text-xs font-semibold text-[#FFF0EB] tracking-wide">
                 Available for Q2/Q3 Projects
               </span>
             </div>
 
-            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-normal text-white tracking-tight leading-[1.1]">
-              Let&apos;s create something that <span className="italic">echoes</span>.
+            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-normal text-[#FFF0EB] tracking-tight leading-[1.1]">
+              Let&apos;s create something that <span className="italic copper-text-gradient">echoes</span>.
             </h2>
 
-            <p className="font-sans-ui text-base text-white/70 leading-relaxed max-w-md">
+            <p className="font-sans-ui text-base text-[#FCEEE8]/80 leading-relaxed max-w-md">
               Whether you are looking to build a new flagship web experience, modernize your brand system, or engineer an interactive 3D product showcase, we are ready to bring your vision to life.
             </p>
 
             {/* Direct Email Link */}
             <div className="pt-4 font-sans-ui">
-              <span className="text-xs text-white/40 uppercase tracking-widest block mb-2">Direct Contact</span>
+              <span className="text-xs text-copper-light uppercase tracking-widest block mb-2 font-medium">Direct Contact</span>
               <a
                 href="mailto:hello@echolance.com"
-                className="text-xl sm:text-2xl font-serif italic text-white hover:text-white/80 transition-colors inline-flex items-center gap-2 group"
+                className="text-xl sm:text-2xl font-serif italic text-[#FFF0EB] hover:text-copper-light transition-colors inline-flex items-center gap-2 group"
               >
                 <span>hello@echolance.com</span>
-                <ArrowUpRight className="w-5 h-5 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                <ArrowUpRight className="w-5 h-5 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform text-copper-light" />
               </a>
             </div>
-          </div>
+          </motion.div>
 
           {/* Right Column: Interactive Project Inquiry Form */}
-          <div className="lg:col-span-6 font-sans-ui">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-70px' }}
+            transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+            className="lg:col-span-6 font-sans-ui"
+          >
             <form
               onSubmit={handleSubmit}
-              className="p-8 sm:p-10 rounded-3xl liquid-glass border border-white/15 space-y-5 shadow-2xl backdrop-blur-md"
+              className="p-8 sm:p-10 rounded-3xl liquid-glass border border-copper-dark/35 space-y-5 shadow-[0_16px_50px_rgba(0,0,0,0.6)] backdrop-blur-md"
             >
-              <h3 className="text-xl font-medium text-white mb-2">
+              <h3 className="text-xl font-medium text-[#FFF0EB] mb-2">
                 Start a Project Inquiry
               </h3>
 
               {/* Name & Email Row */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs uppercase tracking-wider text-white/60 mb-2">
+                  <label className="block text-xs uppercase tracking-wider text-[#FCEEE8]/80 mb-2 font-medium">
                     Your Name
                   </label>
                   <input
@@ -96,12 +115,12 @@ export const ContactSection: React.FC = () => {
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     placeholder="Jane Doe"
-                    className="w-full bg-white/[0.04] border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-white/40 focus:outline-none focus:border-white/40 transition-colors"
+                    className="w-full bg-[#140B10]/90 border border-copper-dark/35 rounded-xl px-4 py-3 text-sm text-[#FFF0EB] placeholder-[#FCEEE8]/40 focus:outline-none focus:border-copper-light transition-colors"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs uppercase tracking-wider text-white/60 mb-2">
+                  <label className="block text-xs uppercase tracking-wider text-[#FCEEE8]/80 mb-2 font-medium">
                     Your Email
                   </label>
                   <input
@@ -110,20 +129,20 @@ export const ContactSection: React.FC = () => {
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     placeholder="jane@example.com"
-                    className="w-full bg-white/[0.04] border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-white/40 focus:outline-none focus:border-white/40 transition-colors"
+                    className="w-full bg-[#140B10]/90 border border-copper-dark/35 rounded-xl px-4 py-3 text-sm text-[#FFF0EB] placeholder-[#FCEEE8]/40 focus:outline-none focus:border-copper-light transition-colors"
                   />
                 </div>
               </div>
 
               {/* Project Type */}
               <div>
-                <label className="block text-xs uppercase tracking-wider text-white/60 mb-2">
+                <label className="block text-xs uppercase tracking-wider text-[#FCEEE8]/80 mb-2 font-medium">
                   Project Type
                 </label>
                 <select
                   value={formData.projectType}
                   onChange={(e) => setFormData({ ...formData, projectType: e.target.value })}
-                  className="w-full bg-[#121212] border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-white/40 transition-colors cursor-pointer"
+                  className="w-full bg-[#140B10] border border-copper-dark/35 rounded-xl px-4 py-3 text-sm text-[#FFF0EB] focus:outline-none focus:border-copper-light transition-colors cursor-pointer"
                 >
                   <option value="Custom Web Application">Custom Web Application</option>
                   <option value="Interactive 3D / WebGL">Interactive 3D / WebGL Experience</option>
@@ -134,7 +153,7 @@ export const ContactSection: React.FC = () => {
 
               {/* Message */}
               <div>
-                <label className="block text-xs uppercase tracking-wider text-white/60 mb-2">
+                <label className="block text-xs uppercase tracking-wider text-[#FCEEE8]/80 mb-2 font-medium">
                   Project Brief / Goals
                 </label>
                 <textarea
@@ -143,7 +162,7 @@ export const ContactSection: React.FC = () => {
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   placeholder="Tell us about your timeline, key objectives, and vision..."
-                  className="w-full bg-white/[0.04] border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-white/40 focus:outline-none focus:border-white/40 transition-colors resize-none"
+                  className="w-full bg-[#140B10]/90 border border-copper-dark/35 rounded-xl px-4 py-3 text-sm text-[#FFF0EB] placeholder-[#FCEEE8]/40 focus:outline-none focus:border-copper-light transition-colors resize-none"
                 />
               </div>
 
@@ -151,7 +170,7 @@ export const ContactSection: React.FC = () => {
               <button
                 type="submit"
                 disabled={submitted}
-                className="w-full bg-white text-black hover:bg-white/90 font-medium py-3.5 px-6 rounded-xl transition-all duration-200 flex items-center justify-center gap-2 shadow-lg hover:scale-[1.01] active:scale-[0.99] cursor-pointer"
+                className="w-full bg-gradient-to-r from-copper-light to-copper-dark text-[#0B0609] hover:from-[#FFF0EB] hover:to-copper-light font-semibold py-3.5 px-6 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 shadow-[0_0_25px_rgba(226,149,120,0.4)] hover:shadow-[0_0_35px_rgba(242,169,126,0.6)] hover:scale-[1.01] active:scale-[0.99] cursor-pointer"
               >
                 {submitted ? (
                   <>
@@ -166,11 +185,11 @@ export const ContactSection: React.FC = () => {
                 )}
               </button>
             </form>
-          </div>
+          </motion.div>
         </div>
 
         {/* Bottom Footer Bar */}
-        <div className="pt-10 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-6 font-sans-ui text-xs text-white/50">
+        <div className="pt-10 border-t border-copper-dark/25 flex flex-col sm:flex-row items-center justify-between gap-6 font-sans-ui text-xs text-[#FCEEE8]/60">
           <div className="flex items-center gap-2">
             <span>© {new Date().getFullYear()} Echolance Studio.</span>
             <span>•</span>
@@ -184,7 +203,7 @@ export const ContactSection: React.FC = () => {
                 href={social.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-white transition-colors"
+                className="hover:text-copper-light transition-colors"
               >
                 {social.name}
               </a>

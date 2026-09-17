@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 import { ProjectData, ProjectModal } from './ProjectModal';
+import { DroppingStars } from './DroppingStars';
 
 export const PROJECTS: ProjectData[] = [
   {
@@ -73,9 +74,15 @@ export const WorkSection: React.FC = () => {
     : PROJECTS.filter((p) => p.category === selectedCategory);
 
   return (
-    <section id="work" className="relative bg-black py-20 sm:py-28 md:py-36 px-6 sm:px-10 md:px-14 border-t border-white/10 overflow-hidden">
-      {/* Subtle background ambient aura */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-gradient-radial from-white/[0.03] to-transparent blur-3xl pointer-events-none" />
+    <section id="work" className="relative bg-[#0B0609] pt-24 sm:pt-32 md:pt-36 pb-20 sm:pb-28 md:pb-36 px-6 sm:px-10 md:px-14 overflow-hidden">
+      {/* Dropping Stars Particle System from top of Work Section down to end */}
+      <DroppingStars />
+
+      {/* Fluted texture backdrop */}
+      <div className="absolute inset-0 fluted-overlay pointer-events-none opacity-40 z-0" />
+
+      {/* Subtle ambient copper glow in background */}
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-gradient-radial from-[#c87a5b]/10 via-[#9e6b88]/5 to-transparent blur-3xl pointer-events-none z-0" />
 
       <div className="max-w-[1240px] mx-auto relative z-10">
         {/* Section Header */}
@@ -83,19 +90,19 @@ export const WorkSection: React.FC = () => {
           <div className="space-y-4">
             {/* Eyebrow */}
             <div className="flex items-center gap-3">
-              <div className="w-8 h-px bg-white/40" />
-              <span className="font-sans-ui text-xs text-white/70 uppercase tracking-[0.3em] font-medium">
+              <div className="w-8 h-px bg-copper-light shadow-[0_0_8px_rgba(242,169,126,0.8)]" />
+              <span className="font-sans-ui text-xs text-copper-light uppercase tracking-[0.3em] font-medium">
                 Selected Work
               </span>
             </div>
 
             {/* Heading */}
-            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-normal text-white tracking-tight">
-              Featured <span className="italic">projects</span>
+            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-normal text-[#FFF0EB] tracking-tight">
+              Featured <span className="italic copper-text-gradient">projects</span>
             </h2>
 
             {/* Subtext */}
-            <p className="font-sans-ui text-sm sm:text-base text-white/70 max-w-lg leading-relaxed">
+            <p className="font-sans-ui text-sm sm:text-base text-[#FCEEE8]/75 max-w-lg leading-relaxed">
               A curated selection of custom web applications, spatial interactions, and digital brand platforms crafted by Echolance.
             </p>
           </div>
@@ -108,10 +115,10 @@ export const WorkSection: React.FC = () => {
                 <button
                   key={cat}
                   onClick={() => setSelectedCategory(cat)}
-                  className={`text-xs px-4 py-2 rounded-full transition-all duration-300 relative ${
+                  className={`text-xs px-4 py-2 rounded-full transition-all duration-300 relative cursor-pointer ${
                     isSelected
-                      ? 'text-black bg-white font-medium shadow-lg'
-                      : 'text-white/60 hover:text-white liquid-glass hover:bg-white/10'
+                      ? 'text-[#0B0609] bg-gradient-to-r from-copper-light to-copper-dark font-semibold shadow-[0_0_20px_rgba(226,149,120,0.5)]'
+                      : 'text-[#FCEEE8]/75 hover:text-[#FFF0EB] liquid-glass hover:bg-white/[0.06] hover:border-copper-light/40'
                   }`}
                 >
                   {cat}
@@ -133,7 +140,7 @@ export const WorkSection: React.FC = () => {
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.6, delay: idx * 0.08, ease: [0.25, 0.1, 0.25, 1] }}
                 onClick={() => setActiveModalProject(project)}
-                className={`${project.span} group relative cursor-pointer rounded-3xl overflow-hidden liquid-glass border border-white/10 transition-all duration-500 hover:border-white/30 hover:shadow-2xl`}
+                className={`${project.span} group relative cursor-pointer rounded-3xl overflow-hidden liquid-glass border border-copper-dark/25 transition-all duration-500 hover:border-copper-light/60 hover:shadow-[0_16px_50px_rgba(200,122,91,0.3)]`}
               >
                 <div className={`relative w-full ${project.aspectRatio} overflow-hidden`}>
                   {/* Project Image */}
@@ -147,15 +154,15 @@ export const WorkSection: React.FC = () => {
                   {/* Halftone Dot Overlay */}
                   <div className="absolute inset-0 pointer-events-none opacity-25 mix-blend-overlay halftone-overlay" />
 
-                  {/* Gradient Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent pointer-events-none" />
+                  {/* Copper/Obsidian Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0B0609] via-[#0B0609]/40 to-transparent pointer-events-none" />
 
                   {/* Top Badge Info */}
                   <div className="absolute top-6 left-6 right-6 flex items-center justify-between z-10">
-                    <span className="font-sans-ui text-[11px] uppercase tracking-[0.2em] font-medium text-white/90 liquid-glass px-3 py-1 rounded-full border border-white/20">
+                    <span className="font-sans-ui text-[11px] uppercase tracking-[0.2em] font-medium text-copper-light liquid-glass px-3 py-1 rounded-full border border-copper-light/40 shadow-[0_0_10px_rgba(226,149,120,0.15)]">
                       {project.category}
                     </span>
-                    <span className="font-sans-ui text-xs text-white/60 liquid-glass px-3 py-1 rounded-full border border-white/20">
+                    <span className="font-sans-ui text-xs text-[#FCEEE8]/80 liquid-glass px-3 py-1 rounded-full border border-copper-dark/30">
                       {project.year}
                     </span>
                   </div>
@@ -163,16 +170,16 @@ export const WorkSection: React.FC = () => {
                   {/* Bottom Content Card */}
                   <div className="absolute bottom-6 left-6 right-6 z-10 flex items-end justify-between gap-4">
                     <div>
-                      <h3 className="text-2xl sm:text-3xl md:text-4xl font-serif italic text-white tracking-tight mb-1 group-hover:translate-x-1 transition-transform">
+                      <h3 className="text-2xl sm:text-3xl md:text-4xl font-serif italic text-[#FFF0EB] tracking-tight mb-1 group-hover:translate-x-1 transition-transform group-hover:text-copper-light">
                         {project.title}
                       </h3>
-                      <p className="font-sans-ui text-xs sm:text-sm text-white/70 line-clamp-1 max-w-md">
+                      <p className="font-sans-ui text-xs sm:text-sm text-[#FCEEE8]/75 line-clamp-1 max-w-md">
                         {project.tagline}
                       </p>
                     </div>
 
                     {/* View Button Icon */}
-                    <div className="w-10 h-10 rounded-full liquid-glass border border-white/20 flex items-center justify-center text-white group-hover:bg-white group-hover:text-black group-hover:scale-110 transition-all duration-300 flex-shrink-0">
+                    <div className="w-10 h-10 rounded-full liquid-glass border border-copper-light/40 flex items-center justify-center text-copper-light group-hover:bg-gradient-to-r group-hover:from-copper-light group-hover:to-copper-dark group-hover:text-[#0B0609] group-hover:scale-110 transition-all duration-300 flex-shrink-0 shadow-[0_0_15px_rgba(226,149,120,0.25)]">
                       <ArrowUpRight className="w-4 h-4" />
                     </div>
                   </div>
